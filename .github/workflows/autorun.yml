@@ -3,7 +3,7 @@ name: GitHub Actions Auto Run
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 0 * * *'
+    - cron: '30 * * * *'
 
 jobs:
   bot:
@@ -17,7 +17,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: shadowskyDaily
-      env:  
+      env:
         SHADOWSKY_ACCOUNT: ${{ secrets.SHADOWSKY_ACCOUNT }}
         SHADOWSKY_PSW: ${{ secrets.SHADOWSKY_PSW }}
         CORPID: ${{ secrets.CORPID }}

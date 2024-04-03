@@ -26,6 +26,7 @@ def send_to_wecom(text, wecom_cid, wecom_aid, wecom_secret, wecom_touid='@all'):
 
 
 def main():
+    SS_URL = 'https://www.shadowsky.cloud'
     # 通过github的secrets输入到此
     try:
         email = os.environ["SHADOWSKY_ACCOUNT"]
@@ -43,19 +44,19 @@ def main():
         "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'}
     login_data = {'email': email, 'passwd': psw, 'remember_me': 'week'}
     shadowsky_session = requests.Session()
-    shadowsky_login_page = shadowsky_session.post('https://www.shadowsky.fun/auth/login', headers=shadowsky_headers,
+    shadowsky_login_page = shadowsky_session.post(f'{SS_URL}/auth/login', headers=shadowsky_headers,
                                                   data=login_data)
 
-    shadowsky_headers.update({'Origin': 'https://www.shadowsky.fun', 'Referer': 'https://www.shadowsky.fun/user',
+    shadowsky_headers.update({'Origin': f'{SS_URL}', 'Referer': f'{SS_URL}/user',
                               'Accept': 'application/json, text/javascript, */*; q=0.01',
                               'X-Requested-With': 'XMLHttpRequest'})
     shadowsky_checkin_page = shadowsky_session.post(
-        'https://www.shadowsky.fun/user/checkin', headers=shadowsky_headers)
+        f'{SS_URL}/user/checkin', headers=shadowsky_headers)
     end = shadowsky_checkin_page.json()['msg']
     print(end)
 
     shadowsky_remaining = shadowsky_session.get(
-        'https://www.shadowsky.fun/user')
+        f'{SS_URL}/user')
     remaining = re.search(r"剩余流量: <code>(.+?)<",
                           shadowsky_remaining.text).group(1)
     remaining = "剩余流量:"+remaining
