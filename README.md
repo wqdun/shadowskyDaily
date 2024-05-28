@@ -1,5 +1,6 @@
 # shadowskyDaily
 
+
 基于GitHub Actions，用于shadowsky每日签到来获得流量。
 
 ## 实现功能
