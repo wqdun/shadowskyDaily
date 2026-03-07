@@ -44,6 +44,7 @@ def main():
         "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'}
     login_data = {'email': email, 'passwd': psw, 'remember_me': 'week'}
     shadowsky_session = requests.Session()
+    shadowsky_session.verify = False
     shadowsky_login_page = shadowsky_session.post(f'{SS_URL}/auth/login', headers=shadowsky_headers,
                                                   data=login_data)
 
