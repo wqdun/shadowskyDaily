@@ -26,11 +26,13 @@ def send_to_wecom(text, wecom_cid, wecom_aid, wecom_secret, wecom_touid='@all'):
 
 
 def main():
-    SS_URL = 'https://www.shadowsky.cloud'
+    SS_URL = 'https://www.shadowsky.xyz'
     # 通过github的secrets输入到此
     try:
-        email = os.environ["SHADOWSKY_ACCOUNT"]
-        psw = os.environ["SHADOWSKY_PSW"]
+        # email = os.environ["SHADOWSKY_ACCOUNT"]
+        email = 'dunwenqiang@gmail.com'
+        # psw = os.environ["SHADOWSKY_PSW"]
+        psw = '11213812sS$2'
     except KeyError:
         print("请设置SHADOWSKY_ACCOUNT和SHADOWSKY_PSW")
         exit(1)
