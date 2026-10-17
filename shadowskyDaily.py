@@ -35,6 +35,7 @@ def send_to_wecom(text, wecom_cid, wecom_aid, wecom_secret, wecom_touid='@all'):
 
 def main():
     SS_URL = 'https://www.shadowsky.xyz'
+    SS_URL = 'https://www.shadowsky.run'
     # 通过github的secrets输入到此
     try:
         # email = os.environ["SHADOWSKY_ACCOUNT"]
