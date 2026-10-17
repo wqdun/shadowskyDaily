@@ -5,20 +5,6 @@ import json
 from urllib3.poolmanager import PoolManager
 import ssl
 
-class TLSAdapter(requests.adapters.HTTPAdapter):
-    def init_poolmanager(self, connections, maxsize, block=False):
-        ctx = ssl.create_default_context()
-        ctx.minimum_version = ssl.TLSVersion.TLSv1_2
-        # 顺序很关键：先关闭主机名校验，再关闭证书校验
-        ctx.check_hostname = False
-        ctx.verify_mode = ssl.CERT_NONE
-
-        self.poolmanager = PoolManager(
-            num_pools=connections,
-            maxsize=maxsize,
-            block=block,
-            ssl_context=ctx
-        )
 
 def send_to_wecom(text, wecom_cid, wecom_aid, wecom_secret, wecom_touid='@all'):
     get_token_url = f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={wecom_cid}&corpsecret={wecom_secret}"
@@ -63,7 +49,7 @@ def main():
         "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'}
     login_data = {'email': email, 'passwd': psw, 'remember_me': 'week'}
     shadowsky_session = requests.Session()
-    shadowsky_session.mount("https://", TLSAdapter())
+    # shadowsky_session.mount("https://", TLSAdapter())
     shadowsky_session.verify = False
     shadowsky_login_page = shadowsky_session.post(f'{SS_URL}/auth/login', headers=shadowsky_headers,
                                                   data=login_data)
