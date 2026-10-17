@@ -29,7 +29,7 @@ def send_to_wecom(text, wecom_cid, wecom_aid, wecom_secret, wecom_touid='@all'):
 
 def main():
     SS_URL = 'https://www.shadowsky.xyz'
-    # SS_URL = 'https://www.shadowsky.run'
+    SS_URL = 'https://www.shadowsky.run'
     # 通过github的secrets输入到此
     try:
         # email = os.environ["SHADOWSKY_ACCOUNT"]
@@ -49,7 +49,6 @@ def main():
         "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'}
     login_data = {'email': email, 'passwd': psw, 'remember_me': 'week'}
     shadowsky_session = requests.Session()
-    # shadowsky_session.mount("https://", TLSAdapter())
     shadowsky_session.verify = False
     shadowsky_login_page = shadowsky_session.post(f'{SS_URL}/auth/login', headers=shadowsky_headers,
                                                   data=login_data)
